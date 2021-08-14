@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "idb": "^6.1.2",
+    "just-diff": "^3.1.1",
     "serve": "^12.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
@@ -42,7 +44,12 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "warn"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "browserslist": [
     "> 1%",

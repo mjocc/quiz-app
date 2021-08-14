@@ -1,5 +1,5 @@
 export default {
   updateValue({ commit }, payload) {
-    commit("updateValue", payload);
+    commit('updateValue', payload);
   },
 };
