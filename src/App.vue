@@ -39,7 +39,7 @@ export default {
       async (newFlightPlans, oldFlightPlans) => {
         const tx = this.db.transaction(this.storeName, 'readwrite');
         const store = await tx.objectStore(this.storeName);
-        diff(oldFlightPlans, newFlightPlans).forEach(async (change) => {
+        const makeChange = async (change) => {
           const key = change.path[0];
           if (
             change.op === 'add' ||
@@ -54,7 +54,10 @@ export default {
           } else if (change.op === 'remove') {
             await store.delete(key);
           }
-        });
+        };
+        for (let change of diff(oldFlightPlans, newFlightPlans)) {
+          await makeChange(change);
+        }
       },
       { deep: true }
     );
