@@ -1,13 +1,57 @@
 export default {
-  mutations: {},
-  actions: {},
+  namespaced: true,
+  mutations: {
+    import(state, flightplans) {
+      for (let flightplan of flightplans) {
+        state[flightplan.name] = flightplan;
+      }
+    },
+    create(state, name) {
+      state[name] = {
+        name: name,
+        UKAirportCode: null,
+        foreignAirportCode: null,
+        aircraftId: null,
+        numFirstClass: null,
+        standardClassPrice: null,
+        firstClassPrice: null,
+      };
+    },
+  },
+  actions: {
+    create({ commit, state }, name) {
+      if (!(name in state)) {
+        commit('create', name);
+      }
+    },
+  },
+  getters: {
+    count(state) {
+      return Object.keys(state).length;
+    },
+  },
 };
 
 /*
 Test data:
-  first: { name: 'first', foreignAirportCode: 'JFK', aircraftID: 3 },
-  second: { name: 'second', foreignAirportCode: 'ORY', aircraftID: 2 },
-  third: { name: 'third', aircraftID: 1, foreignAirportCode: 'MAD' },
+{
+  "first":{
+    "name":"first",
+    "foreignAirportCode":"JFK",
+    "UKAirportCode":"LPL",
+    "aircraftID":3
+  },
+  "second":{
+    "name":"second",
+    "foreignAirportCode":"ORY",
+    "aircraftID":2
+  },
+  "third":{
+    "name":"third",
+    "aircraftID":1,
+    "foreignAirportCode":"MAD"
+  }
+}
 */
 
 /* 
@@ -18,19 +62,19 @@ name: {
   name, (must be unique and must match the key of the object)
   UKAirportCode,
   foreignAirportCode,
-* distance, (distance between airports, km)
+* distance, // distance between airports, km
   aircraftID,
   numFirstClass,
 * numStandardClass,
   standardClassPrice,
   firstClassPrice,
-* costPerSeat, (running cost per seat for whole distance)
-* runningCost, (total running cost)
+* costPerSeat, // running cost per seat for whole distance
+* runningCost, // total running cost
 * income,
 * profit,
 }
-(an asterisk indicates that the property 
-  is auto-generated from entered data)
+(an asterisk indicates that the property is auto-generated 
+  from entered data and is a getter, not a state property)
 
 For example:
 "First": {
@@ -38,7 +82,7 @@ For example:
   UKAirportCode: "LPL",
   foreignAirportCode: "JFK",
   distance: 5462,
-  aircraftId: 3,
+  aircraftID: 3,
   numFirstClass: 30,
   numStandardClass: 200,
   standardClassPrice: 100,

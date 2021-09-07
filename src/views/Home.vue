@@ -1,15 +1,7 @@
 <template>
-  <div class="home">
-    <img
-      alt="Plane logo"
-      src="../assets/plane.svg"
-      @click="$emit('test', { value: 'test-value' })"
-    />
+  <div class="d-flex flex-column">
+    <router-link class="btn btn-dark" :to="{ name: 'Flightplans' }"
+      >Manage flightplans</router-link
+    >
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Home',
-};
-</script>

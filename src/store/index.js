@@ -6,38 +6,20 @@ import actions from './actions.js';
 import airports from './modules/airports.js';
 import aircraft from './modules/aircraft.js';
 import flightplans from './modules/flightplans.js';
+import selected from './modules/selected.js';
 
 export default createStore({
   state: {
     selectedFlightPlanName: null,
   },
-  getters: {
-    selectedFlightPlan(state) {
-      return state.flightplans[state.selectedFlightPlanName];
-    },
-    selectedAirport(state, getters) {
-      let flightplan = getters.selectedFlightPlan;
-      if (flightplan) {
-        return state.airports[getters.selectedFlightPlan.foreignAirportCode];
-      } else {
-        return undefined;
-      }
-    },
-    selectedAircraft(state, getters) {
-      let flightplan = getters.selectedFlightPlan;
-      if (flightplan) {
-        return state.aircraft[getters.selectedFlightPlan.aircraftID];
-      } else {
-        return undefined;
-      }
-    },
-  },
+  getters: {},
   mutations,
   actions,
   modules: {
     airports,
     aircraft,
     flightplans,
+    selected,
   },
   strict: process.env.NODE_ENV !== 'production',
 });

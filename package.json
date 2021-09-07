@@ -9,6 +9,7 @@
     "production-serve": "serve -s dist"
   },
   "dependencies": {
+    "bootstrap": "^5.1.0",
     "core-js": "^3.6.5",
     "idb": "^6.1.2",
     "just-diff": "^3.1.1",
