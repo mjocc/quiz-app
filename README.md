@@ -32,6 +32,10 @@ vue ui
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+## Deploy
+```
+npm run deploy
+```
 
 ## Docs
 

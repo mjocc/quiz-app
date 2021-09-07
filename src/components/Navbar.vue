@@ -19,91 +19,38 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
       v-if="showNavbar"
+      ref="navbarCollapseButton"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div
       class="collapse navbar-collapse"
       id="navbar-collapsed-section"
-      ref="navbarCollapse"
       v-if="showNavbar"
     >
       <ul class="navbar-nav mx-2 mx-xl-0">
-        <li class="nav-item">
-          <router-link class="nav-link" :to="{ name: 'Home' }"
-            >Home</router-link
-          >
-        </li>
-        <li>
-          <router-link class="nav-link" :to="{ name: 'Flightplans' }"
-            >Manage flightplans</router-link
-          >
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            :class="{ active: dataEntryDropdownActive }"
-            href="#"
-            id="navbar-forms-dropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            ref="dataEntryDropdown"
-            >Data entry forms</a
-          >
-          <ul
-            class="dropdown-menu dropdown-menu-dark"
-            aria-labelledby="navbar-forms-dropdown"
-          >
-            <li>
-              <router-link
-                class="dropdown-item"
-                :to="{ name: 'AirportDetails' }"
-                >Airport details</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                class="dropdown-item"
-                :to="{ name: 'AircraftDetails' }"
-                >Aircraft details</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                class="dropdown-item"
-                :to="{ name: 'PricingDetails' }"
-                >Pricing details</router-link
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" :to="{ name: 'ProfitInformation' }"
-            >Profit information</router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" :to="{ name: 'Export' }"
-            >Import/export data</router-link
-          >
-        </li>
+        <navbar-item to="Home">Home</navbar-item>
+        <navbar-item to="Flightplans">Manage Flightplans</navbar-item>
+        <navbar-item to="AirportDetails">Airport Details</navbar-item>
+        <navbar-item to="AircraftDetails">Aircraft Details</navbar-item>
+        <navbar-item to="PricingDetails">Pricing Details</navbar-item>
+        <navbar-item to="ProfitInformation">Profit information</navbar-item>
+        <navbar-item to="Export">Import/export data</navbar-item>
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
-import bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.min.js';
 import { mapState } from 'vuex';
+import $ from 'jquery';
+
+import NavbarItem from './NavbarItem.vue';
 
 export default {
   name: 'navbar',
-  data() {
-    return {
-      dataEntryDropdown: null,
-      navbarCollapse: null,
-    };
+  components: {
+    NavbarItem,
   },
   computed: {
     ...mapState(['selectedFlightPlanName']),
@@ -119,16 +66,12 @@ export default {
       );
     },
   },
-  beforeRouteUpdate(to, from, next) {
-    this.dataEntryDropdown.hide();
-    this.navbarCollapse.hide();
-    next();
-  },
-  mounted() {
-    this.dataEntryDropdown = new bootstrap.Dropdown(
-      this.$refs.dataEntryDropdown
-    );
-    this.navbarCollapse = new bootstrap.Collapse(this.$refs.navbarCollapse);
+  watch: {
+    $route: function () {
+      if ($(this.$refs.navbarCollapseButton).attr('aria-expanded') === 'true') {
+        $(this.$refs.navbarCollapseButton).click();
+      }
+    },
   },
 };
 </script>

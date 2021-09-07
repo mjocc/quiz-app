@@ -51,9 +51,10 @@ export default {
     },
   },
   async mounted() {
+    let storeName = this.storeName;
     this.db = await openDB(this.dbName, this.version, {
       upgrade(db) {
-        db.createObjectStore(this.storeName);
+        db.createObjectStore(storeName);
       },
     });
 

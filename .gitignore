@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # replit
 .replit
+
+# Local Netlify folder
+.netlify
