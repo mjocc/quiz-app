@@ -49,9 +49,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:6.8.0"],
             ["eslint-plugin-prettier", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.4.1"],
             ["eslint-plugin-vue", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:7.17.0"],
-            ["idb", "npm:6.1.3"],
             ["jquery", "npm:3.6.0"],
             ["just-diff", "npm:3.1.1"],
+            ["localforage", "npm:1.10.0"],
             ["prettier", "npm:2.3.2"],
             ["regenerator-runtime", "npm:0.13.9"],
             ["serve", "npm:12.0.0"],
@@ -8209,9 +8209,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:6.8.0"],
             ["eslint-plugin-prettier", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.4.1"],
             ["eslint-plugin-vue", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:7.17.0"],
-            ["idb", "npm:6.1.3"],
             ["jquery", "npm:3.6.0"],
             ["just-diff", "npm:3.1.1"],
+            ["localforage", "npm:1.10.0"],
             ["prettier", "npm:2.3.2"],
             ["regenerator-runtime", "npm:0.13.9"],
             ["serve", "npm:12.0.0"],
@@ -9001,15 +9001,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["idb", [
-        ["npm:6.1.3", {
-          "packageLocation": "./.yarn/cache/idb-npm-6.1.3-1dd88b4aa6-d465aeff52.zip/node_modules/idb/",
-          "packageDependencies": [
-            ["idb", "npm:6.1.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["ieee754", [
         ["npm:1.2.1", {
           "packageLocation": "./.yarn/cache/ieee754-npm-1.2.1-fb63b3caeb-5144c0c981.zip/node_modules/ieee754/",
@@ -9040,6 +9031,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ignore-npm-4.0.6-66c0d6543e-248f82e50a.zip/node_modules/ignore/",
           "packageDependencies": [
             ["ignore", "npm:4.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["immediate", [
+        ["npm:3.0.6", {
+          "packageLocation": "./.yarn/cache/immediate-npm-3.0.6-c27588a2d3-f9b3486477.zip/node_modules/immediate/",
+          "packageDependencies": [
+            ["immediate", "npm:3.0.6"]
           ],
           "linkType": "HARD",
         }]
@@ -10054,6 +10054,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["lie", [
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/lie-npm-3.1.1-91350720d9-6da9f2121d.zip/node_modules/lie/",
+          "packageDependencies": [
+            ["lie", "npm:3.1.1"],
+            ["immediate", "npm:3.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["lines-and-columns", [
         ["npm:1.1.6", {
           "packageLocation": "./.yarn/cache/lines-and-columns-npm-1.1.6-23e74fab67-198a5436b1.zip/node_modules/lines-and-columns/",
@@ -10112,6 +10122,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["big.js", "npm:5.2.2"],
             ["emojis-list", "npm:3.0.0"],
             ["json5", "npm:2.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["localforage", [
+        ["npm:1.10.0", {
+          "packageLocation": "./.yarn/cache/localforage-npm-1.10.0-cf9ea9a436-f2978b434d.zip/node_modules/localforage/",
+          "packageDependencies": [
+            ["localforage", "npm:1.10.0"],
+            ["lie", "npm:3.1.1"]
           ],
           "linkType": "HARD",
         }]
