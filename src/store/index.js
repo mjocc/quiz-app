@@ -1,4 +1,6 @@
 import { createStore } from 'vuex';
+import VuexPersistence from 'vuex-persist';
+import localForage from 'localforage';
 
 import mutations from './mutations.js';
 import actions from './actions.js';
@@ -8,7 +10,15 @@ import aircraft from './modules/aircraft.js';
 import flightplans from './modules/flightplans.js';
 import selected from './modules/selected.js';
 
+const vuexLocal = new VuexPersistence({
+  storage: localForage,
+  key: flightplans,
+  modules: ['flightplans'],
+  asyncStorage: true,
+});
+
 export default createStore({
+  plugins: [vuexLocal.plugin],
   state: {
     selectedFlightPlanName: null,
   },

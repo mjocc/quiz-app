@@ -5846,7 +5846,6 @@ fsevents@~2.3.2:
     eslint-plugin-prettier: ^3.3.1
     eslint-plugin-vue: ^7.0.0
     jquery: ^3.6.0
-    just-diff: ^3.1.1
     localforage: ^1.10.0
     prettier: ^2.2.1
     regenerator-runtime: ^0.13.9
@@ -7410,13 +7409,6 @@ fsevents@~2.3.2:
     json-schema: 0.2.3
     verror: 1.10.0
   checksum: 6bcb20ec265ae18bb48e540a6da2c65f9c844f7522712d6dfcb01039527a49414816f4869000493363f1e1ea96cbad00e46188d5ecc78257a19f152467587373
-  languageName: node
-  linkType: hard
-
-"just-diff@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "just-diff@npm:3.1.1"
-  checksum: dc43480df5bfbc6bf33ae8cfbc01f6875a979712f766b80d5466b48377b59b16c912a4a778110fa14a2efef1f7a09434507138210533fd625669915b6841a03e
   languageName: node
   linkType: hard
 

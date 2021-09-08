@@ -1,11 +1,6 @@
 export default {
   namespaced: true,
   mutations: {
-    import(state, flightplans) {
-      for (let flightplan of flightplans) {
-        state[flightplan.name] = flightplan;
-      }
-    },
     create(state, name) {
       state[name] = {
         name: name,

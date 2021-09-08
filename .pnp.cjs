@@ -50,7 +50,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.4.1"],
             ["eslint-plugin-vue", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:7.17.0"],
             ["jquery", "npm:3.6.0"],
-            ["just-diff", "npm:3.1.1"],
             ["localforage", "npm:1.10.0"],
             ["prettier", "npm:2.3.2"],
             ["regenerator-runtime", "npm:0.13.9"],
@@ -8210,7 +8209,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.4.1"],
             ["eslint-plugin-vue", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:7.17.0"],
             ["jquery", "npm:3.6.0"],
-            ["just-diff", "npm:3.1.1"],
             ["localforage", "npm:1.10.0"],
             ["prettier", "npm:2.3.2"],
             ["regenerator-runtime", "npm:0.13.9"],
@@ -9968,15 +9966,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["extsprintf", "npm:1.3.0"],
             ["json-schema", "npm:0.2.3"],
             ["verror", "npm:1.10.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["just-diff", [
-        ["npm:3.1.1", {
-          "packageLocation": "./.yarn/cache/just-diff-npm-3.1.1-ab4446d78f-dc43480df5.zip/node_modules/just-diff/",
-          "packageDependencies": [
-            ["just-diff", "npm:3.1.1"]
           ],
           "linkType": "HARD",
         }]
