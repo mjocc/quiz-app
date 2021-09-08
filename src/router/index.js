@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store/index.js';
 
 import Home from '../views/Home.vue';
-import Flightplans from '../views/Flightplans.vue';
+import ManageFlightplans from '../views/ManageFlightplans.vue';
 import AirportDetails from '../views/Airport.vue';
 import AircraftDetails from '../views/Aircraft.vue';
 import PricingDetails from '../views/Pricing.vue';
@@ -17,9 +17,9 @@ const routes = [
     component: Home,
   },
   {
-    path: '/flightplans/',
-    name: 'Flightplans',
-    component: Flightplans,
+    path: '/manage/',
+    name: 'ManageFlightplans',
+    component: ManageFlightplans,
   },
   {
     path: '/airport/',
