@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column">
-    <home-link to="Flightplans">Manage flightplans</home-link>
+    <home-link to="ManageFlightplans">Manage flightplans</home-link>
     <hr />
     <home-link to="AirportDetails">Airport Details</home-link>
     <home-link to="AircraftDetails">Aircraft Details</home-link>

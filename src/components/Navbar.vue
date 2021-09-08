@@ -30,7 +30,7 @@
     >
       <ul class="navbar-nav mx-2 mx-xl-0">
         <navbar-item to="Home">Home</navbar-item>
-        <navbar-item to="Flightplans">Manage Flightplans</navbar-item>
+        <navbar-item to="ManageFlightplans">Manage Flightplans</navbar-item>
         <navbar-item to="AirportDetails">Airport Details</navbar-item>
         <navbar-item to="AircraftDetails">Aircraft Details</navbar-item>
         <navbar-item to="PricingDetails">Pricing Details</navbar-item>
