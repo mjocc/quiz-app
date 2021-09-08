@@ -60,8 +60,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (store.state.selectedFlightPlanName === null && to.name !== 'Flightplans')
-    next({ name: 'Flightplans' });
+  if (store.state.selectedFlightPlanName === null && to.name !== 'ManageFlightplans')
+    next({ name: 'ManageFlightplans' });
   else next();
 });
 

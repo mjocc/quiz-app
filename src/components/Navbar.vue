@@ -62,7 +62,7 @@ export default {
     showNavbar() {
       return !(
         this.selectedFlightPlanName === null &&
-        this.$route.name === 'Flightplans'
+        this.$route.name === 'ManageFlightplans'
       );
     },
   },
