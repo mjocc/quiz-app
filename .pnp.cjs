@@ -57,7 +57,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["serve", "npm:12.0.0"],
             ["vue", "npm:3.2.10"],
             ["vue-router", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.11"],
-            ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"]
+            ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"],
+            ["vuex-persist", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.1.3"]
           ],
           "linkType": "SOFT",
         }]
@@ -6596,6 +6597,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["deepmerge", "npm:1.5.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:4.2.2", {
+          "packageLocation": "./.yarn/cache/deepmerge-npm-4.2.2-112165ced2-a8c43a1ed8.zip/node_modules/deepmerge/",
+          "packageDependencies": [
+            ["deepmerge", "npm:4.2.2"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["default-gateway", [
@@ -7975,6 +7983,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["flatted", "npm:2.0.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.2.2", {
+          "packageLocation": "./.yarn/cache/flatted-npm-3.2.2-d61e116742-9d5e03fd93.zip/node_modules/flatted/",
+          "packageDependencies": [
+            ["flatted", "npm:3.2.2"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["flush-write-stream", [
@@ -8202,7 +8217,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["serve", "npm:12.0.0"],
             ["vue", "npm:3.2.10"],
             ["vue-router", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.11"],
-            ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"]
+            ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"],
+            ["vuex-persist", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.1.3"]
           ],
           "linkType": "SOFT",
         }]
@@ -15249,6 +15265,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [
             "@types/vue",
             "vue"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["vuex-persist", [
+        ["npm:3.1.3", {
+          "packageLocation": "./.yarn/cache/vuex-persist-npm-3.1.3-eb40e09f3a-7cd8348c11.zip/node_modules/vuex-persist/",
+          "packageDependencies": [
+            ["vuex-persist", "npm:3.1.3"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.1.3", {
+          "packageLocation": "./.yarn/__virtual__/vuex-persist-virtual-af8006548e/0/cache/vuex-persist-npm-3.1.3-eb40e09f3a-7cd8348c11.zip/node_modules/vuex-persist/",
+          "packageDependencies": [
+            ["vuex-persist", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:3.1.3"],
+            ["@types/vuex", null],
+            ["deepmerge", "npm:4.2.2"],
+            ["flatted", "npm:3.2.2"],
+            ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"]
+          ],
+          "packagePeers": [
+            "@types/vuex",
+            "vuex"
           ],
           "linkType": "HARD",
         }]
