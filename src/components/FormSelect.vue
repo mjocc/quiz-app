@@ -4,11 +4,12 @@
     <select
       class="form-select"
       :id="id"
-      :name="name"
+      :value="$attrs.modelValue"
       :required="required"
       :autofocus="autofocus"
+      @input="updateValue($event.target.value)"
     >
-      <option disabled selected hidden>Select an option</option>
+      <option value="default" disabled selected hidden>Select an option</option>
       <option
         v-for="option in options"
         :key="option.value"
@@ -23,14 +24,14 @@
 <script>
 export default {
   name: 'form-select',
+  emits: ['update:modelValue'],
   props: {
     id: {
       type: String,
       required: true,
     },
-    name: {
+    value: {
       type: String,
-      required: true,
     },
     label: {
       type: String,
@@ -40,9 +41,11 @@ export default {
       type: Array[Object], // object has value and text properties
       required: true,
       validator(options) {
-        return options.every((option) => {
-          Object.prototype.hasOwnProperty.call(option, 'value') &&
-            Object.prototype.hasOwnProperty.call(option, 'value');
+        return Array.prototype.every.call(options, (option) => {
+          return (
+            Object.prototype.hasOwnProperty.call(option, 'value') &&
+            Object.prototype.hasOwnProperty.call(option, 'text')
+          );
         });
       },
     },
@@ -53,6 +56,11 @@ export default {
     autofocus: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    updateValue(value) {
+      this.$emit('update:modelValue', value);
     },
   },
 };

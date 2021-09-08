@@ -6,8 +6,8 @@
     <home-link to="AircraftDetails">Aircraft Details</home-link>
     <home-link to="PricingDetails">Pricing Details</home-link>
     <hr />
-    <home-link to="ProfitInformation">Pricing Details</home-link>
-    <home-link to="Export">Import/export data</home-link>
+    <home-link to="ProfitInformation">Profit Information</home-link>
+    <home-link to="ExportPage">Import/export data</home-link>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-xl navbar-dark bg-dark px-2">
-    <router-link class="navbar-brand" :to="{ name: 'Home' }">
+    <router-link class="navbar-brand" :to="{ name: 'HomePage' }">
       <img
         src="../assets/plane.svg"
         width="30"
@@ -29,13 +29,13 @@
       v-if="showNavbar"
     >
       <ul class="navbar-nav mx-2 mx-xl-0">
-        <navbar-item to="Home">Home</navbar-item>
+        <navbar-item to="HomePage">Home</navbar-item>
         <navbar-item to="ManageFlightplans">Manage Flightplans</navbar-item>
         <navbar-item to="AirportDetails">Airport Details</navbar-item>
         <navbar-item to="AircraftDetails">Aircraft Details</navbar-item>
         <navbar-item to="PricingDetails">Pricing Details</navbar-item>
         <navbar-item to="ProfitInformation">Profit information</navbar-item>
-        <navbar-item to="Export">Import/export data</navbar-item>
+        <navbar-item to="ExportPage">Import/export data</navbar-item>
       </ul>
     </div>
   </nav>

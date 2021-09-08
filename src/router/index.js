@@ -2,52 +2,51 @@ import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store/index.js';
 
 import Home from '../views/Home.vue';
-import ManageFlightplans from '../views/ManageFlightplans.vue';
-import AirportDetails from '../views/Airport.vue';
+import Flightplans from '../views/Flightplans.vue';
 
 function lazyLoad(view) {
-  return () => import(`@/views/${view}.vue`);
+  return () => import(`../views/${view}.vue`);
 }
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'HomePage',
     component: Home,
   },
   {
     path: '/manage/',
     name: 'ManageFlightplans',
-    component: ManageFlightplans,
+    component: Flightplans,
   },
   {
     path: '/airport/',
     name: 'AirportDetails',
-    component: AirportDetails,
+    component: lazyLoad('Airport'),
   },
   {
     path: '/aircraft/',
     name: 'AircraftDetails',
-    component: lazyLoad('AircraftDetails'),
+    component: lazyLoad('Aircraft'),
   },
   {
     path: '/pricing/',
     name: 'PricingDetails',
-    component: lazyLoad('PricingDetails'),
+    component: lazyLoad('Pricing'),
   },
   {
     path: '/profit/',
     name: 'ProfitInformation',
-    component: lazyLoad('ProfitInformation'),
+    component: lazyLoad('Profit'),
   },
   {
     path: '/export/',
-    name: 'Export',
+    name: 'ExportPage',
     component: lazyLoad('Export'),
   },
   {
     path: '/:catchAll(.*)',
-    name: 'NotFound',
+    name: 'NotFoundPage',
     component: lazyLoad('NotFound'),
   },
 ];
@@ -61,6 +60,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (
     store.state.selectedFlightPlanName === null &&
+    localStorage.getItem('selectedFlightPlanName') === null &&
     to.name !== 'ManageFlightplans'
   )
     next({ name: 'ManageFlightplans' });
