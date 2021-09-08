@@ -4,11 +4,10 @@ import store from '../store/index.js';
 import Home from '../views/Home.vue';
 import ManageFlightplans from '../views/ManageFlightplans.vue';
 import AirportDetails from '../views/Airport.vue';
-import AircraftDetails from '../views/Aircraft.vue';
-import PricingDetails from '../views/Pricing.vue';
-import ProfitInformation from '../views/Profit.vue';
-import Export from '../views/Export.vue';
-import NotFound from '../views/NotFound.vue';
+
+function lazyLoad(view) {
+  return () => import(`@/views/${view}.vue`);
+}
 
 const routes = [
   {
@@ -29,27 +28,27 @@ const routes = [
   {
     path: '/aircraft/',
     name: 'AircraftDetails',
-    component: AircraftDetails,
+    component: lazyLoad('AircraftDetails'),
   },
   {
     path: '/pricing/',
     name: 'PricingDetails',
-    component: PricingDetails,
+    component: lazyLoad('PricingDetails'),
   },
   {
     path: '/profit/',
     name: 'ProfitInformation',
-    component: ProfitInformation,
+    component: lazyLoad('ProfitInformation'),
   },
   {
     path: '/export/',
     name: 'Export',
-    component: Export,
+    component: lazyLoad('Export'),
   },
   {
     path: '/:catchAll(.*)',
     name: 'NotFound',
-    component: NotFound,
+    component: lazyLoad('NotFound'),
   },
 ];
 
@@ -60,7 +59,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (store.state.selectedFlightPlanName === null && to.name !== 'ManageFlightplans')
+  if (
+    store.state.selectedFlightPlanName === null &&
+    to.name !== 'ManageFlightplans'
+  )
     next({ name: 'ManageFlightplans' });
   else next();
 });
