@@ -3,8 +3,10 @@
     <label class="mb-1" :for="id">{{ label }}</label>
     <select
       class="form-select"
+      :class="{ 'is-invalid': error }"
       :id="id"
       :value="modelValue"
+      :disabled="disabled"
       :autofocus="autofocus"
       @input="$emit('update:modelValue', $event.target.value)"
     >
@@ -50,6 +52,14 @@ export default {
           );
         });
       },
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    error: {
+      type: Boolean,
+      default: false,
     },
     autofocus: {
       type: Boolean,

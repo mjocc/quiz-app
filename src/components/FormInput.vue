@@ -3,11 +3,13 @@
     <label class="mb-1" :for="id">{{ label }}</label>
     <input
       class="form-control"
+      :class="{ 'is-invalid': error }"
       :id="id"
       :type="type"
       :value="modelValue"
-      :autofocus="autofocus"
       :placeholder="placeholder"
+      :disabled="disabled"
+      :autofocus="autofocus"
       @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
@@ -19,7 +21,7 @@ export default {
   emits: ['update:modelValue'],
   props: {
     modelValue: {
-      type: String,
+      type: [String, Number],
     },
     id: {
       type: String,
@@ -38,6 +40,14 @@ export default {
     },
     placeholder: {
       type: String,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    error: {
+      type: Boolean,
+      default: false,
     },
     autofocus: {
       type: Boolean,

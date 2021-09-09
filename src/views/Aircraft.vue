@@ -6,6 +6,7 @@
       v-model.number="aircraftType"
       label="Aircraft Type"
       :options="aircrafts"
+      :error="aircraftFieldError && displayErrors"
       autofocus
     />
     <form-input
@@ -13,6 +14,8 @@
       v-model.number="numFirstClass"
       label="Number of First Class Seats"
       type="number"
+      :error="firstClassFieldError && displayErrors"
+      :disabled="disableFirstClassField"
     />
     <form-buttons @submitForm="updateAircraftData()" />
   </data-entry-form>
@@ -39,18 +42,21 @@ export default {
   data() {
     return {
       aircraftType: 'default',
-      numFirstClass: null,
+      numFirstClass: '',
+      displayErrors: false,
     };
   },
   methods: {
     updateAircraftData() {
-      if (this.aircraftType !== 'default' && this.numFirstClass !== 'default') {
+      if (!this.aircraftFieldError && !this.firstClassFieldError) {
         this.$store.commit(ENTER_AIRCRAFT_DETAILS, {
           aircraftID: this.aircraftType,
           numFirstClass: this.numFirstClass,
         });
         this.$router.push({ name: 'HomePage' });
         toastr.success('Aircraft data submitted');
+      } else {
+        this.displayErrors = true;
       }
     },
   },
@@ -63,6 +69,15 @@ export default {
           text: aircraft.type,
         };
       });
+    },
+    disableFirstClassField() {
+      return this.aircraftType === 'default';
+    },
+    aircraftFieldError() {
+      return this.aircraftType === 'default';
+    },
+    firstClassFieldError() {
+      return this.numFirstClass === '' || isNaN(this.numFirstClass);
     },
   },
   mounted() {
