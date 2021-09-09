@@ -3,7 +3,7 @@
   <data-entry-form>
     <form-select
       id="aircraft-type"
-      v-model="aircraftType"
+      v-model.number="aircraftType"
       label="Aircraft Type"
       :options="aircrafts"
       autofocus
