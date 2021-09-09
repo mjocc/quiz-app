@@ -8,10 +8,9 @@
       :value="$attrs.modelValue"
       :required="required"
       :autofocus="autofocus"
-      :placeholder="placeholder
+      :placeholder="placeholder"
       @input="updateValue($event.target.value)"
-    >
-    </input>
+    />
   </div>
 </template>
 

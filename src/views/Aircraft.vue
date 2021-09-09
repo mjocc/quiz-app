@@ -28,7 +28,7 @@ export default {
   components: {
     DataEntryForm,
     FormSelect,
-    FormInput
+    FormInput,
     FormButtons,
   },
   data() {
