@@ -2,18 +2,21 @@
   <h1>Aircraft</h1>
   <data-entry-form>
     <form-select
-      id="aircraft-type"
+      id="aircraft-type-field"
       v-model.number="aircraftType"
       label="Aircraft Type"
       :options="aircrafts"
       autofocus
-      >Aircraft Type</form-select
-    >
-    <form-input>
-    Number of First Class Seats
-    </form-input>
+    />
+    <form-input
+      id="num-first-class-field"
+      v-model.number="numFirstClass"
+      label="Number of First Class Seats"
+      type="number"
+    />
     <form-buttons @submitForm="updateAircraftData()" />
   </data-entry-form>
+  {{ $store.state.flightplans }}
 </template>
 
 <script>

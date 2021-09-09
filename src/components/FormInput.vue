@@ -1,12 +1,11 @@
 <template>
   <div class="form-group my-3">
-    <label class="mb-1" :for="id"><slot></slot></label>
+    <label class="mb-1" :for="id">{{ label }}</label>
     <input
       class="form-control"
       :id="id"
       :type="type"
       :value="$attrs.modelValue"
-      :required="required"
       :autofocus="autofocus"
       :placeholder="placeholder"
       @input="updateValue($event.target.value)"
@@ -36,10 +35,6 @@ export default {
     },
     placeholder: {
       type: String,
-    },
-    required: {
-      type: Boolean,
-      default: true,
     },
     autofocus: {
       type: Boolean,

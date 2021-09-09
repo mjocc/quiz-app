@@ -12,7 +12,7 @@ import selected from './modules/selected.js';
 
 const vuexLocal = new VuexPersistence({
   storage: localForage,
-  key: flightplans,
+  key: 'flightplans',
   modules: ['flightplans'],
   asyncStorage: true,
 });

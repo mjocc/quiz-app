@@ -17,6 +17,8 @@
 <script>
 import { mapState } from 'vuex';
 
+import { IMPORT_SELECTED_FLIGHTPLAN } from './store/mutation-types.js';
+
 import Navbar from './components/Navbar.vue';
 
 export default {
@@ -38,6 +40,12 @@ export default {
         class: `alert-${type}`,
       });
     },
+  },
+  mounted() {
+    const selectedFlightPlanName = localStorage.getItem(
+      'selectedFlightPlanName'
+    );
+    this.$store.commit(IMPORT_SELECTED_FLIGHTPLAN, selectedFlightPlanName);
   },
   watch: {
     selectedFlightPlanName() {

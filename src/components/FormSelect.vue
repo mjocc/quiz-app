@@ -1,11 +1,10 @@
 <template>
   <div class="form-group my-3">
-    <label class="mb-1" :for="id"><slot></slot></label>
+    <label class="mb-1" :for="id">{{ label }}</label>
     <select
       class="form-select"
       :id="id"
       :value="$attrs.modelValue"
-      :required="required"
       :autofocus="autofocus"
       @input="updateValue($event.target.value)"
     >
@@ -48,10 +47,6 @@ export default {
           );
         });
       },
-    },
-    required: {
-      type: Boolean,
-      default: true,
     },
     autofocus: {
       type: Boolean,
