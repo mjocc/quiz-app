@@ -9,6 +9,9 @@
       autofocus
       >Aircraft Type</form-select
     >
+    <form-input>
+    Number of First Class Seats
+    </form-input>
     <form-buttons @submitForm="updateAircraftData()" />
   </data-entry-form>
 </template>
@@ -17,13 +20,15 @@
 import { ENTER_AIRCRAFT_DETAILS } from '../store/mutation-types.js';
 
 import DataEntryForm from '../components/DataEntryForm.vue';
-import FormButtons from '../components/FormButtons.vue';
 import FormSelect from '../components/FormSelect.vue';
+import FormInput from '../components/FormInput.vue';
+import FormButtons from '../components/FormButtons.vue';
 
 export default {
   components: {
     DataEntryForm,
     FormSelect,
+    FormInput
     FormButtons,
   },
   data() {
