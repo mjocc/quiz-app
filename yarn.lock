@@ -5850,6 +5850,7 @@ fsevents@~2.3.2:
     prettier: ^2.2.1
     regenerator-runtime: ^0.13.9
     serve: ^12.0.0
+    toastr: ^2.1.4
     vue: ^3.0.0
     vue-router: ^4.0.0-0
     vuex: ^4.0.0-0
@@ -7241,7 +7242,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"jquery@npm:^3.6.0":
+"jquery@npm:>=1.12.0, jquery@npm:^3.6.0":
   version: 3.6.0
   resolution: "jquery@npm:3.6.0"
   checksum: 8fd5fef4aa48fd374ec716dd1c1df1af407814a228e15c1260ca140de3a697c2a77c30c54ff1d238b6a3ab4ddc445ddeef9adce6c6d28e4869d85eb9d3951c0e
@@ -11461,6 +11462,15 @@ fsevents@~2.3.2:
     regex-not: ^1.0.2
     safe-regex: ^1.1.0
   checksum: 4ed4a619059b64e204aad84e4e5f3ea82d97410988bcece7cf6cbfdbf193d11bff48cf53842d88b8bb00b1bfc0d048f61f20f0709e6f393fd8fe0122662d9db4
+  languageName: node
+  linkType: hard
+
+"toastr@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "toastr@npm:2.1.4"
+  dependencies:
+    jquery: ">=1.12.0"
+  checksum: 54e67385cfcdd88cce656c986a4894fd9484824d42549b646ce82b8780621ee1eccc0fb2ec89668dc67de4ae54de8f34a1c8b6f0f217940060d040d3fdb4491f
   languageName: node
   linkType: hard
 

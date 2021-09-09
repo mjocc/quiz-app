@@ -25,6 +25,24 @@ export default {
       return Object.keys(state).length;
     },
   },
+  state: {
+    first: {
+      name: 'first',
+      foreignAirportCode: 'JFK',
+      UKAirportCode: 'LPL',
+      aircraftID: 3,
+    },
+    second: {
+      name: 'second',
+      foreignAirportCode: 'ORY',
+      aircraftID: 2,
+    },
+    third: {
+      name: 'third',
+      aircraftID: 1,
+      foreignAirportCode: 'MAD',
+    },
+  },
 };
 
 /*

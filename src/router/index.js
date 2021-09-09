@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import localForage from 'localforage';
+
 import store from '../store/index.js';
 
 import Home from '../views/Home.vue';
@@ -57,10 +59,13 @@ const router = createRouter({
   linkActiveClass: 'active',
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  let flightPlanSave = await localForage.getItem('flightplans');
   if (
-    store.state.selectedFlightPlanName === null &&
-    localStorage.getItem('selectedFlightPlanName') === null &&
+    store.state.selected.flightPlanName === null &&
+    (flightPlanSave === null ||
+      flightPlanSave.selected === null ||
+      flightPlanSave.selected.flightPlanName === null) &&
     to.name !== 'ManageFlightplans'
   )
     next({ name: 'ManageFlightplans' });

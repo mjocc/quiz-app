@@ -31,9 +31,13 @@
       <ul class="navbar-nav mx-2 mx-xl-0">
         <navbar-item to="HomePage">Home</navbar-item>
         <navbar-item to="ManageFlightplans">Manage Flightplans</navbar-item>
+        <span class="d-none d-xl-inline border-start border-1 my-2"></span>
+        <hr class="d-xl-none text-white m-0" />
         <navbar-item to="AirportDetails">Airport Details</navbar-item>
         <navbar-item to="AircraftDetails">Aircraft Details</navbar-item>
         <navbar-item to="PricingDetails">Pricing Details</navbar-item>
+        <span class="d-none d-xl-inline border-start border-1 my-2"></span>
+        <hr class="d-xl-none text-white m-0" />
         <navbar-item to="ProfitInformation">Profit information</navbar-item>
         <navbar-item to="ExportPage">Import/export data</navbar-item>
       </ul>
@@ -53,7 +57,7 @@ export default {
     NavbarItem,
   },
   computed: {
-    ...mapState(['selectedFlightPlanName']),
+    ...mapState('selected', ['flightPlanName']),
     dataEntryDropdownActive() {
       return ['AirportDetails', 'AircraftDetails', 'PricingDetails'].includes(
         this.$route.name
@@ -61,8 +65,7 @@ export default {
     },
     showNavbar() {
       return !(
-        this.selectedFlightPlanName === null &&
-        this.$route.name === 'ManageFlightplans'
+        this.flightPlanName === null && this.$route.name === 'ManageFlightplans'
       );
     },
   },

@@ -13,15 +13,12 @@ import selected from './modules/selected.js';
 const vuexLocal = new VuexPersistence({
   storage: localForage,
   key: 'flightplans',
-  modules: ['flightplans'],
+  modules: ['flightplans', 'selected'],
   asyncStorage: true,
 });
 
 export default createStore({
   plugins: [vuexLocal.plugin],
-  state: {
-    selectedFlightPlanName: null,
-  },
   getters: {},
   mutations,
   actions,

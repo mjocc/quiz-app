@@ -1,12 +1,13 @@
-import { ENTER_AIRCRAFT_DETAILS } from '../mutation-types';
-
 export default {
   namespaced: true,
+  state: {
+    flightPlanName: null,
+  },
   mutations: {},
   actions: {},
   getters: {
     flightplan(state, getters, rootState) {
-      return rootState.flightplans[rootState.selectedFlightPlanName];
+      return rootState.flightplans[state.flightPlanName];
     },
     foreignAirport(state, getters, rootState) {
       let flightplan = getters.flightplan;

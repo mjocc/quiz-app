@@ -16,10 +16,12 @@
     />
     <form-buttons @submitForm="updateAircraftData()" />
   </data-entry-form>
-  {{ $store.state.flightplans }}
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import toastr from 'toastr';
+
 import { ENTER_AIRCRAFT_DETAILS } from '../store/mutation-types.js';
 
 import DataEntryForm from '../components/DataEntryForm.vue';
@@ -37,7 +39,7 @@ export default {
   data() {
     return {
       aircraftType: 'default',
-      numFirstClass: 'default',
+      numFirstClass: null,
     };
   },
   methods: {
@@ -47,10 +49,13 @@ export default {
           aircraftID: this.aircraftType,
           numFirstClass: this.numFirstClass,
         });
+        this.$router.push({ name: 'HomePage' });
+        toastr.success('Aircraft data submitted');
       }
     },
   },
   computed: {
+    ...mapGetters('selected', ['flightplan']),
     aircrafts() {
       return Object.values(this.$store.state.aircraft).map((aircraft) => {
         return {
@@ -59,6 +64,15 @@ export default {
         };
       });
     },
+  },
+  mounted() {
+    if (
+      this.flightplan.aircraftID !== undefined &&
+      this.flightplan.numFirstClass !== undefined
+    ) {
+      this.aircraftType = this.flightplan.aircraftID;
+      this.numFirstClass = this.flightplan.numFirstClass;
+    }
   },
 };
 </script>

@@ -4,9 +4,9 @@
     <select
       class="form-select"
       :id="id"
-      :value="$attrs.modelValue"
+      :value="modelValue"
       :autofocus="autofocus"
-      @input="updateValue($event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
       <option value="default" disabled selected hidden>Select an option</option>
       <option
@@ -25,6 +25,9 @@ export default {
   name: 'form-select',
   emits: ['update:modelValue'],
   props: {
+    modelValue: {
+      type: [String, Number],
+    },
     id: {
       type: String,
       required: true,
@@ -51,11 +54,6 @@ export default {
     autofocus: {
       type: Boolean,
       default: false,
-    },
-  },
-  methods: {
-    updateValue(value) {
-      this.$emit('update:modelValue', value);
     },
   },
 };

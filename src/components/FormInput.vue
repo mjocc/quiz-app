@@ -5,10 +5,10 @@
       class="form-control"
       :id="id"
       :type="type"
-      :value="$attrs.modelValue"
+      :value="modelValue"
       :autofocus="autofocus"
       :placeholder="placeholder"
-      @input="updateValue($event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
   name: 'form-input',
   emits: ['update:modelValue'],
   props: {
+    modelValue: {
+      type: String,
+    },
     id: {
       type: String,
       required: true,
@@ -39,11 +42,6 @@ export default {
     autofocus: {
       type: Boolean,
       default: false,
-    },
-  },
-  methods: {
-    updateValue(value) {
-      this.$emit('update:modelValue', value);
     },
   },
 };

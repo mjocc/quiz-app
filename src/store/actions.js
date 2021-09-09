@@ -1,7 +1,7 @@
 import * as types from '../store/mutation-types.js';
 
 function getSelectedFlightPlan(state) {
-  return state.flightplans[state.selectedFlightPlanName];
+  return state.flightplans[state.selected.flightPlanName];
 }
 
 export default {

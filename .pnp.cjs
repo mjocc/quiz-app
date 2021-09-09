@@ -54,6 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.3.2"],
             ["regenerator-runtime", "npm:0.13.9"],
             ["serve", "npm:12.0.0"],
+            ["toastr", "npm:2.1.4"],
             ["vue", "npm:3.2.10"],
             ["vue-router", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.11"],
             ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"],
@@ -8213,6 +8214,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.3.2"],
             ["regenerator-runtime", "npm:0.13.9"],
             ["serve", "npm:12.0.0"],
+            ["toastr", "npm:2.1.4"],
             ["vue", "npm:3.2.10"],
             ["vue-router", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.11"],
             ["vuex", "virtual:8fe44c7a0154a602ee7f13c2d2b35fd91d6cc8cceec5242146546ba9c89bb1bedd4392c5ebff2f51963609ac030de903dcfb513f67468f4399e4e4635f45ff1f#npm:4.0.2"],
@@ -14550,6 +14552,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["to-regex-range", "npm:5.0.1"],
             ["is-number", "npm:7.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["toastr", [
+        ["npm:2.1.4", {
+          "packageLocation": "./.yarn/cache/toastr-npm-2.1.4-41367e8cfd-54e67385cf.zip/node_modules/toastr/",
+          "packageDependencies": [
+            ["toastr", "npm:2.1.4"],
+            ["jquery", "npm:3.6.0"]
           ],
           "linkType": "HARD",
         }]
