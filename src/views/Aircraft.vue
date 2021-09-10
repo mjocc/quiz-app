@@ -61,7 +61,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('selected', ['flightplan']),
+    ...mapGetters('selected', ['flightplan', 'aircraft']),
     aircrafts() {
       return Object.values(this.$store.state.aircraft).map((aircraft) => {
         return {
@@ -77,7 +77,13 @@ export default {
       return this.aircraftType === 'default';
     },
     firstClassFieldError() {
-      return this.numFirstClass === '' || isNaN(this.numFirstClass);
+      return (
+        this.numFirstClass === '' ||
+        isNaN(this.numFirstClass) ||
+        this.numFirstClass < this.aircraft.minFirstClass ||
+        this.numFirstClass >
+          this.aircraft.maxStandardClass - this.numFirstClass * 2
+      );
     },
   },
   mounted() {
