@@ -52,27 +52,27 @@ export default {
       return Object.keys(state).length;
     },
   },
-  state: {
-    first: {
-      name: 'first',
-      date: new Date('2021-09-11T18:12:20.008Z'),
-      foreignAirportCode: 'JFK',
-      UKAirportCode: 'LPL',
-      aircraftID: 3,
-    },
-    second: {
-      name: 'second',
-      date: new Date('2021-09-11T18:12:20.008Z'),
-      foreignAirportCode: 'ORY',
-      aircraftID: 2,
-    },
-    third: {
-      name: 'third',
-      date: new Date('2021-09-11T18:12:20.008Z'),
-      aircraftID: 1,
-      foreignAirportCode: 'MAD',
-    },
-  },
+  // state: {
+  //   first: {
+  //     name: 'first',
+  //     date: new Date('2021-09-11T18:12:20.008Z'),
+  //     foreignAirportCode: 'JFK',
+  //     UKAirportCode: 'LPL',
+  //     aircraftID: 3,
+  //   },
+  //   second: {
+  //     name: 'second',
+  //     date: new Date('2021-09-11T18:12:20.008Z'),
+  //     foreignAirportCode: 'ORY',
+  //     aircraftID: 2,
+  //   },
+  //   third: {
+  //     name: 'third',
+  //     date: new Date('2021-09-11T18:12:20.008Z'),
+  //     aircraftID: 1,
+  //     foreignAirportCode: 'MAD',
+  //   },
+  // },
 };
 
 /* 
