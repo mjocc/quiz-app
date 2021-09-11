@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
 
-import 'bootstrap';
+import 'lodash';
 import 'jquery';
+import 'bootstrap';
 import 'toastr';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

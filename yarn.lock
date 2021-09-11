@@ -5847,6 +5847,7 @@ fsevents@~2.3.2:
     eslint-plugin-vue: ^7.0.0
     jquery: ^3.6.0
     localforage: ^1.10.0
+    lodash: ^4.17.21
     prettier: ^2.2.1
     regenerator-runtime: ^0.13.9
     serve: ^12.0.0

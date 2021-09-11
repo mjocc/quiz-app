@@ -22,10 +22,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import toastr from 'toastr';
-
-import { ENTER_AIRCRAFT_DETAILS } from '../store/mutation-types.js';
+import { mapGetters, mapActions } from 'vuex';
 
 import DataEntryForm from '../components/DataEntryForm.vue';
 import FormSelect from '../components/FormSelect.vue';
@@ -47,9 +45,10 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['enterAircraftDetails']),
     updateAircraftData() {
       if (!this.aircraftFieldError && !this.firstClassFieldError) {
-        this.$store.commit(ENTER_AIRCRAFT_DETAILS, {
+        this.enterAircraftDetails({
           aircraftID: this.aircraftType,
           numFirstClass: this.numFirstClass,
         });
@@ -81,11 +80,10 @@ export default {
     },
   },
   mounted() {
-    if (
-      this.flightplan.aircraftID !== undefined &&
-      this.flightplan.numFirstClass !== undefined
-    ) {
+    if (this.flightplan.aircraftID !== undefined) {
       this.aircraftType = this.flightplan.aircraftID;
+    }
+    if (this.flightplan.numFirstClass !== undefined) {
       this.numFirstClass = this.flightplan.numFirstClass;
     }
   },
