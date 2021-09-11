@@ -12,8 +12,6 @@ import Navbar from './components/Navbar.vue';
 
 toastr.options = {
   positionClass: 'toast-bottom-right',
-  progressBar: true,
-  closeButton: true,
 };
 
 export default {
