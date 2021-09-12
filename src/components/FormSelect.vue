@@ -7,6 +7,7 @@
       :id="id"
       :value="modelValue"
       :disabled="disabled"
+      :required="required"
       :autofocus="autofocus"
       @input="$emit('update:modelValue', $event.target.value)"
     >
@@ -58,6 +59,10 @@ export default {
       default: false,
     },
     error: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
       type: Boolean,
       default: false,
     },

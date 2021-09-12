@@ -1,6 +1,6 @@
 <template>
   <h1>Aircraft</h1>
-  <data-entry-form>
+  <data-entry-form @submit="print">
     <form-select
       id="aircraft-type-field"
       v-model.number="aircraftType"
@@ -8,6 +8,7 @@
       :options="aircrafts"
       :error="aircraftFieldError && displayErrors"
       autofocus
+      required
     />
     <form-input
       id="num-first-class-field"
@@ -16,8 +17,8 @@
       type="number"
       :error="firstClassFieldError && displayErrors"
       :disabled="disableFirstClassField"
+      required
     />
-    <form-buttons @submitForm="updateAircraftData()" />
   </data-entry-form>
 </template>
 
@@ -28,14 +29,12 @@ import { mapGetters, mapActions } from 'vuex';
 import DataEntryForm from '../components/DataEntryForm.vue';
 import FormSelect from '../components/FormSelect.vue';
 import FormInput from '../components/FormInput.vue';
-import FormButtons from '../components/FormButtons.vue';
 
 export default {
   components: {
     DataEntryForm,
     FormSelect,
     FormInput,
-    FormButtons,
   },
   data() {
     return {
@@ -58,6 +57,7 @@ export default {
         this.displayErrors = true;
       }
     },
+    print: console.log
   },
   computed: {
     ...mapGetters('selected', ['flightplan', 'aircraft']),
