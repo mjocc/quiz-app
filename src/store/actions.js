@@ -1,20 +1,11 @@
-import * as types from '../store/mutation-types.js';
-
-function getSelectedFlightPlan(state) {
-  return state.flightplans[state.selected.flightPlanName];
-}
-
 export default {
-  enterAirportDetails({ state, commit }, payload) {
-    const flightplan = getSelectedFlightPlan(state);
-    commit(types.ENTER_AIRPORT_DETAILS, { flightplan, ...payload });
+  enterAirportDetails({ commit }, payload) {
+    commit('enterAirportDetails', payload);
   },
-  enterAircraftDetails({ state, commit }, payload) {
-    const flightplan = getSelectedFlightPlan(state);
-    commit(types.ENTER_AIRCRAFT_DETAILS, { flightplan, ...payload });
+  enterAircraftDetails({ commit }, payload) {
+    commit('enterAircraftDetails', payload);
   },
-  enterPricingDetails({ state, commit }, payload) {
-    const flightplan = getSelectedFlightPlan(state);
-    commit(types.ENTER_PRICING_DETAILS, { flightplan, ...payload });
+  enterPricingDetails({ commit }, payload) {
+    commit('enterPricingDetails', payload);
   },
 };

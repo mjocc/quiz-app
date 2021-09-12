@@ -67,9 +67,19 @@ router.beforeEach(async (to, from, next) => {
       flightPlanSave.selected === null ||
       flightPlanSave.selected.flightPlanName === null) &&
     to.name !== 'ManageFlightplans'
-  )
+  ) {
     next({ name: 'ManageFlightplans' });
-  else next();
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'ProfitInformation' && !store.getters['selected/complete']) {
+    next({ name: 'HomePage' });
+  } else {
+    next();
+  }
 });
 
 export default router;

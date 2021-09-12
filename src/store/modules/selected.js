@@ -3,8 +3,22 @@ export default {
   state: {
     flightPlanName: null,
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    updateSelectedFlightPlanName(state, name) {
+      state.flightPlanName = name;
+    },
+    clearSelectedFlightPlanName(state) {
+      state.flightPlanName = null;
+    },
+  },
+  actions: {
+    updateSelectedFlightPlan({ commit }, name) {
+      commit('updateSelectedFlightPlanName', name);
+    },
+    clearSelectedFlightPlan({ commit }) {
+      commit('clearSelectedFlightPlanName');
+    },
+  },
   getters: {
     flightplan(state, getters, rootState) {
       return rootState.flightplans[state.flightPlanName];
@@ -68,29 +82,15 @@ export default {
     },
     airportDetailsExist(state, getters) {
       let flightplan = getters.flightplan;
-      if (flightplan) {
-        return (
-          flightplan.UKAirportCode != null &&
-          flightplan.foreignAirportCode != null
-        );
-      }
+      return airportDetailsExist(flightplan);
     },
     aircraftDetailsExist(state, getters) {
       let flightplan = getters.flightplan;
-      if (flightplan) {
-        return (
-          flightplan.aircraftID != null && flightplan.numFirstClass != null
-        );
-      }
+      return aircraftDetailsExist(flightplan);
     },
     pricingDetailsExist(state, getters) {
       let flightplan = getters.flightplan;
-      if (flightplan) {
-        return (
-          flightplan.standardClassPrice != null &&
-          flightplan.firstClassPrice != null
-        );
-      }
+      return pricingDetailsExist(flightplan);
     },
     inRange(state, getters) {
       if (getters.airportDetailsExist && getters.aircraftDetailsExist) {
@@ -107,3 +107,26 @@ export default {
     },
   },
 };
+
+export function airportDetailsExist(flightplan) {
+  if (flightplan) {
+    return (
+      flightplan.UKAirportCode != null && flightplan.foreignAirportCode != null
+    );
+  }
+}
+
+export function aircraftDetailsExist(flightplan) {
+  if (flightplan) {
+    return flightplan.aircraftID != null && flightplan.numFirstClass != null;
+  }
+}
+
+export function pricingDetailsExist(flightplan) {
+  if (flightplan) {
+    return (
+      flightplan.standardClassPrice != null &&
+      flightplan.firstClassPrice != null
+    );
+  }
+}

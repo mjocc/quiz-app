@@ -4,6 +4,7 @@ export default {
     create(state, name) {
       state[name] = {
         name: name,
+        date: new Date(),
         UKAirportCode: null,
         foreignAirportCode: null,
         aircraftId: null,
@@ -12,12 +13,38 @@ export default {
         firstClassPrice: null,
       };
     },
+    update(state, names) {
+      let fp = state[names.oldName];
+      fp.name = names.newName;
+      state[names.newName] = fp;
+      delete state[names.oldName];
+    },
+    delete(state, name) {
+      delete state[name];
+    },
   },
   actions: {
-    create({ commit, state }, name) {
+    async create({ commit, state }, name) {
       if (!(name in state)) {
-        commit('create', name);
+        await commit('create', name);
+        return [true, 'Flight plan created successfully'];
+      } else {
+        return [false, 'Name already exists'];
       }
+    },
+    async update({ commit, state }, names) {
+      if (!(names.newName in state)) {
+        await commit('update', names);
+        return [true, 'Flight plan name update successful'];
+      } else if (names.oldName === names.newName) {
+        return [true, 'Flight plan name update successful'];
+      } else {
+        return [false, 'New name already exists'];
+      }
+    },
+    async delete({ commit }, name) {
+      await commit('delete', name);
+      return [true, 'Flight plan deleted successfully'];
     },
   },
   getters: {
@@ -25,47 +52,28 @@ export default {
       return Object.keys(state).length;
     },
   },
-  state: {
-    first: {
-      name: 'first',
-      foreignAirportCode: 'JFK',
-      UKAirportCode: 'LPL',
-      aircraftID: 3,
-    },
-    second: {
-      name: 'second',
-      foreignAirportCode: 'ORY',
-      aircraftID: 2,
-    },
-    third: {
-      name: 'third',
-      aircraftID: 1,
-      foreignAirportCode: 'MAD',
-    },
-  },
+  // state: {
+  //   first: {
+  //     name: 'first',
+  //     date: new Date('2021-09-11T18:12:20.008Z'),
+  //     foreignAirportCode: 'JFK',
+  //     UKAirportCode: 'LPL',
+  //     aircraftID: 3,
+  //   },
+  //   second: {
+  //     name: 'second',
+  //     date: new Date('2021-09-11T18:12:20.008Z'),
+  //     foreignAirportCode: 'ORY',
+  //     aircraftID: 2,
+  //   },
+  //   third: {
+  //     name: 'third',
+  //     date: new Date('2021-09-11T18:12:20.008Z'),
+  //     aircraftID: 1,
+  //     foreignAirportCode: 'MAD',
+  //   },
+  // },
 };
-
-/*
-Test data:
-{
-  "first":{
-    "name":"first",
-    "foreignAirportCode":"JFK",
-    "UKAirportCode":"LPL",
-    "aircraftID":3
-  },
-  "second":{
-    "name":"second",
-    "foreignAirportCode":"ORY",
-    "aircraftID":2
-  },
-  "third":{
-    "name":"third",
-    "aircraftID":1,
-    "foreignAirportCode":"MAD"
-  }
-}
-*/
 
 /* 
 Each flight plan must be a seperate object in the 
@@ -73,6 +81,7 @@ flightplans module state with the following schema:
 
 name: {
   name, (must be unique and must match the key of the object)
+  date, // date created (date object)
   UKAirportCode,
   foreignAirportCode,
 * distance, // distance between airports, km
@@ -92,6 +101,7 @@ name: {
 For example:
 "First": {
   name: "First",
+  date: 2021-09-11T18:12:20.008Z,
   UKAirportCode: "LPL",
   foreignAirportCode: "JFK",
   distance: 5462,
@@ -106,5 +116,4 @@ For example:
   profit: 15000,
 }
 (made up example - values may not be accurate)
-
 */
