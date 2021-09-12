@@ -30,15 +30,17 @@
     >
       <ul class="navbar-nav mx-2 mx-xl-0">
         <navbar-item to="HomePage">Home</navbar-item>
-        <navbar-item to="ManageFlightplans">Manage Flightplans</navbar-item>
+        <navbar-item to="ManageFlightplans">Manage flightplans</navbar-item>
         <span class="d-none d-xl-inline border-start border-1 my-2"></span>
         <hr class="d-xl-none text-white m-0" />
-        <navbar-item to="AirportDetails">Airport Details</navbar-item>
-        <navbar-item to="AircraftDetails">Aircraft Details</navbar-item>
-        <navbar-item to="PricingDetails">Pricing Details</navbar-item>
+        <navbar-item to="AirportDetails">Airport details</navbar-item>
+        <navbar-item to="AircraftDetails">Aircraft details</navbar-item>
+        <navbar-item to="PricingDetails">Pricing details</navbar-item>
         <span class="d-none d-xl-inline border-start border-1 my-2"></span>
         <hr class="d-xl-none text-white m-0" />
-        <navbar-item to="ProfitInformation">Profit information</navbar-item>
+        <navbar-item to="ProfitInformation" :disabled="!complete"
+          >Profit information</navbar-item
+        >
         <navbar-item to="ExportPage">Import/export data</navbar-item>
       </ul>
     </div>
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import $ from 'jquery';
 
 import NavbarItem from './NavbarItem.vue';
@@ -58,6 +60,7 @@ export default {
   },
   computed: {
     ...mapState('selected', ['flightPlanName']),
+    ...mapGetters('selected', ['complete']),
     dataEntryDropdownActive() {
       return ['AirportDetails', 'AircraftDetails', 'PricingDetails'].includes(
         this.$route.name

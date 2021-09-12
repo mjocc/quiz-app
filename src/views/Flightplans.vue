@@ -286,7 +286,7 @@ export default {
     },
   },
   components: {
-    'fp-row': FlightPlanTableRow,
+    'FpRow': FlightPlanTableRow,
   },
 };
 </script>
