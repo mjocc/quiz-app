@@ -241,6 +241,7 @@ export default {
       );
       if (success) {
         $('#create-modal button[class="btn-close"]').click();
+        $('#create-save-name').val('');
         toastr.success(message);
       } else {
         $('#create-save-name').addClass('is-invalid');
@@ -254,6 +255,7 @@ export default {
       });
       if (success) {
         $('#edit-modal button[class="btn-close"]').click();
+        this.clickedRow = null;
         toastr.success(message);
       } else {
         $('#edit-save-name').addClass('is-invalid');
