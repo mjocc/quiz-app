@@ -75,6 +75,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref="close-create-modal"
             ></button>
           </div>
           <form @submit.prevent="submitCreateForm">
@@ -83,12 +84,13 @@
                 <span class="input-group-text">Save name</span>
                 <input
                   type="text"
-                  name="save-name"
                   maxlength="100"
                   class="form-control"
                   id="create-save-name"
+                  v-model="createSaveName"
+                  :class="{ 'is-invalid': createSaveNameInvalid }"
                   required
-                  @input="removeIsInvalid"
+                  @input="createSaveNameInvalid = false;"
                 />
               </div>
             </div>
@@ -117,6 +119,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref="close-edit-modal"
             ></button>
           </div>
           <form @submit.prevent="submitEditForm">
@@ -125,13 +128,13 @@
                 <span class="input-group-text">Save name</span>
                 <input
                   type="text"
-                  name="save-name"
                   maxlength="100"
                   class="form-control"
                   id="edit-save-name"
+                  v-model="editSaveName"
+                  :class="{ 'is-invalid': editSaveNameInvalid }"
                   required
-                  :value="clickedRow"
-                  @input="removeIsInvalid"
+                  @input="editSaveNameInvalid = false;"
                 />
               </div>
             </div>
@@ -160,6 +163,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref="close-delete-modal"
             ></button>
           </div>
           <form @submit.prevent="submitDeleteForm">
@@ -207,6 +211,10 @@ export default {
   data() {
     return {
       clickedRow: null,
+      createSaveName: null,
+      createSaveNameInvalid: false,
+      editSaveName: null,
+      editSaveNameInvalid: false,
     };
   },
   methods: {
@@ -224,6 +232,12 @@ export default {
     },
     updateClickedRow(name) {
       this.clickedRow = name;
+      this.editSaveName = name;
+    },
+    removeClickedRow() {
+      this.clearSelectedFlightPlan();
+      this.clickedRow = null;
+      this.editSaveName = null;
     },
     updateSelectedRow(name) {
       this.updateSelectedFlightPlan(name);
@@ -232,41 +246,38 @@ export default {
     handleSelectButtonClick() {
       this.updateSelectedRow(this.clickedRow);
     },
-    removeIsInvalid(event) {
-      $(event.target).removeClass('is-invalid');
-    },
-    async submitCreateForm(submitEvent) {
-      let [success, message] = await this.create(
-        submitEvent.target.elements['create-save-name'].value
-      );
+    async submitCreateForm() {
+      let [success, message] = await this.create(this.createSaveName);
       if (success) {
-        $('#create-modal button[class="btn-close"]').click();
-        $('#create-save-name').val('');
+        $(this.$refs["close-create-modal"]).click();
+        this.removeClickedRow()
+        this.createSaveName = null;
         toastr.success(message);
       } else {
-        $('#create-save-name').addClass('is-invalid');
+        this.createSaveNameInvalid = true;
         toastr.error(message);
       }
     },
-    async submitEditForm(submitEvent) {
+    async submitEditForm() {
       let [success, message] = await this.update({
         oldName: this.clickedRow,
-        newName: submitEvent.target.elements['edit-save-name'].value,
+        newName: this.editSaveName,
       });
       if (success) {
-        $('#edit-modal button[class="btn-close"]').click();
-        this.clickedRow = null;
+        $(this.$refs["close-edit-modal"]).click();
+        this.removeClickedRow()
+        this.editSaveName = null;
         toastr.success(message);
       } else {
-        $('#edit-save-name').addClass('is-invalid');
+        this.editSaveNameInvalid = true;
         toastr.error(message);
       }
     },
     async submitDeleteForm() {
       let [success, message] = await this.delete(this.clickedRow);
-      this.clearSelectedFlightPlan();
       if (success) {
-        $('#delete-modal button[class="btn-close"]').click();
+        $(this.$refs["close-delete-modal"]).click();
+        this.removeClickedRow()
         toastr.success(message);
       } else {
         toastr.error(message);

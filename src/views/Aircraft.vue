@@ -1,68 +1,73 @@
 <template>
   <h1>Aircraft</h1>
-  <data-entry-form @submit="print">
-    <form-select
-      id="aircraft-type-field"
-      v-model.number="aircraftType"
-      label="Aircraft Type"
-      :options="aircrafts"
-      :error="aircraftFieldError && displayErrors"
-      autofocus
-      required
-    />
-    <form-input
-      id="num-first-class-field"
-      v-model.number="numFirstClass"
-      label="Number of First Class Seats"
-      type="number"
-      :error="firstClassFieldError && displayErrors"
-      :disabled="disableFirstClassField"
-      required
-    />
+  <data-entry-form @submit.prevent="updateAircraftData">
+    <div class="form-group my-3">
+      <label class="mb-1" :for="id">Aircraft Type</label>
+      <select
+        v-model="aircraftType"
+        class="form-select"
+        id="aircraft-type-field"
+        autofocus
+        required
+      >
+        <option value="default" disabled selected hidden>Select an option</option>
+        <option
+          v-for="aircraft in aircrafts"
+          :key="aircraft.value"
+          :value="aircraft.value"
+        >
+          {{ aircraft.text }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group my-3">
+      <label class="mb-1" for="num-first-class-field">Number of First Class Seats</label>
+      <input
+        v-model="numFirstClass"
+        id="num-first-class-field"
+        class="form-control"
+        type="number"
+        :disabled="disableFirstClassField"
+        :min="minFirstClass"
+        :max="maxFirstClass"
+        required
+      />
+  </div>
   </data-entry-form>
 </template>
 
 <script>
 import toastr from 'toastr';
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 import DataEntryForm from '../components/DataEntryForm.vue';
-import FormSelect from '../components/FormSelect.vue';
-import FormInput from '../components/FormInput.vue';
 
 export default {
   components: {
     DataEntryForm,
-    FormSelect,
-    FormInput,
   },
   data() {
     return {
       aircraftType: 'default',
-      numFirstClass: '',
-      displayErrors: false,
+      numFirstClass: null,
     };
   },
   methods: {
     ...mapActions(['enterAircraftDetails']),
     updateAircraftData() {
-      if (!this.aircraftFieldError && !this.firstClassFieldError) {
         this.enterAircraftDetails({
           aircraftID: this.aircraftType,
           numFirstClass: this.numFirstClass,
         });
         this.$router.push({ name: 'HomePage' });
         toastr.success('Aircraft data submitted');
-      } else {
-        this.displayErrors = true;
-      }
     },
-    print: console.log
   },
   computed: {
-    ...mapGetters('selected', ['flightplan', 'aircraft']),
+    ...mapState(['aircraft']),
+    ...mapGetters('selected', ['flightplan']),
     aircrafts() {
-      return Object.values(this.$store.state.aircraft).map((aircraft) => {
+      return Object.values(this.aircraft).map((aircraft) => {
         return {
           value: aircraft.id,
           text: aircraft.type,
@@ -72,17 +77,19 @@ export default {
     disableFirstClassField() {
       return this.aircraftType === 'default';
     },
-    aircraftFieldError() {
-      return this.aircraftType === 'default';
+    minFirstClass() {
+      if (this.aircraftType !== 'default') {
+        return this.aircraft[this.aircraftType].minFirstClass;
+      } else {
+        return 0;
+      }
     },
-    firstClassFieldError() {
-      return (
-        this.numFirstClass === '' ||
-        isNaN(this.numFirstClass) ||
-        this.numFirstClass < this.aircraft.minFirstClass ||
-        this.numFirstClass >
-          this.aircraft.maxStandardClass - this.numFirstClass * 2
-      );
+    maxFirstClass() {
+      if (this.aircraftType !== 'default') {
+        return this.aircraft[this.aircraftType].maxStandardClass / 2;
+      } else {
+        return 0;
+      }
     },
   },
   mounted() {

@@ -14,6 +14,11 @@
 export default {
   name: 'data-entry-form',
   emits: ['submit'],
+  data(){
+    return {
+      showErrors: false,
+    }
+  },
   methods: {
     handleFormSubmit(event) {
       this.$emit('submit', event);
