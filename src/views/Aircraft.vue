@@ -32,7 +32,7 @@
         :max="maxFirstClass"
         required
       />
-  </div>
+    </div>
   </data-entry-form>
 </template>
 
