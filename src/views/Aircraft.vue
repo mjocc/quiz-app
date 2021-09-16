@@ -1,8 +1,8 @@
 <template>
-  <h1>Aircraft</h1>
+  <h1>Aircraft Details</h1>
   <data-entry-form @submit.prevent="updateAircraftData">
     <div class="form-group my-3">
-      <label class="mb-1" :for="id">Aircraft Type</label>
+      <label class="mb-1" for="aircraft-type-field">Aircraft Type</label>
       <select
         v-model="aircraftType"
         class="form-select"
@@ -12,7 +12,7 @@
       >
         <option value="default" disabled selected hidden>Select an option</option>
         <option
-          v-for="aircraft in aircrafts"
+          v-for="aircraft in selectAircrafts"
           :key="aircraft.value"
           :value="aircraft.value"
         >
@@ -66,7 +66,7 @@ export default {
   computed: {
     ...mapState(['aircraft']),
     ...mapGetters('selected', ['flightplan']),
-    aircrafts() {
+    selectAircrafts() {
       return Object.values(this.aircraft).map((aircraft) => {
         return {
           value: aircraft.id,

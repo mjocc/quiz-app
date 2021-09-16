@@ -1,5 +1,6 @@
 <template>
-  <data-entry-form>
+  <h1>Airport Details</h1>
+  <data-entry-form @submit.prevent="updateAirportData">
     <div class="form-group my-3">
       <label class="mb-1" for="uk-airport-field">UK Airport</label>
       <select v-model="UKAirport" class="form-select" id="uk-airport-field" required autofocus>
@@ -18,11 +19,11 @@
       >
         <option value="default" disabled selected hidden>Select an option</option>
         <option
-          v-for="airport in airports"
+          v-for="airport in selectAirports"
           :key="airport.value"
           :value="airport.value"
         >
-          {{ aircraft.text }}
+          {{ airport.text }}
         </option>
       </select>
     </div>
@@ -45,11 +46,22 @@ export default {
       foreignAirport: 'default',
     };
   },
+  methods: {
+    ...mapActions(['enterAirportDetails']),
+    updateAirportData() {
+        this.enterAirportDetails({
+          UKAirportCode: this.UKAirport,
+          foreignAirportCode: this.foreignAirport,
+        });
+        this.$router.push({ name: 'HomePage' });
+        toastr.success('Airport data submitted');
+    },
+  },
   computed: {
-    ...mapState(['airport']),
+    ...mapState(['airports']),
     ...mapGetters('selected', ['flightplan']),
-    airports() {
-      return Object.values(this.airport).map((airport) => {
+    selectAirports() {
+      return Object.values(this.airports).map((airport) => {
         return {
           value: airport.code,
           text: airport.name,

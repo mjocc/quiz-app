@@ -7,7 +7,7 @@ export default {
         date: new Date(),
         UKAirportCode: null,
         foreignAirportCode: null,
-        aircraftId: null,
+        aircraftID: null,
         numFirstClass: null,
         standardClassPrice: null,
         firstClassPrice: null,
