@@ -3,10 +3,18 @@
   <data-entry-form @submit.prevent="updateAirportData">
     <div class="form-group my-3">
       <label class="mb-1" for="uk-airport-field">UK Airport</label>
-      <select v-model="UKAirport" class="form-select" id="uk-airport-field" required autofocus>
-          <option value="default" disabled selected hidden>Select an option</option>
-          <option value="LPL">Liverpool John Lennon (LPL)</option>
-          <option value="BOH">Bournemouth International Airport (BOH)</option>
+      <select
+        v-model="UKAirport"
+        class="form-select"
+        id="uk-airport-field"
+        required
+        autofocus
+      >
+        <option value="default" disabled selected hidden>
+          Select an option
+        </option>
+        <option value="LPL">Liverpool John Lennon (LPL)</option>
+        <option value="BOH">Bournemouth International Airport (BOH)</option>
       </select>
     </div>
     <div class="form-group my-3">
@@ -17,7 +25,9 @@
         id="foreign-airport-field"
         required
       >
-        <option value="default" disabled selected hidden>Select an option</option>
+        <option value="default" disabled selected hidden>
+          Select an option
+        </option>
         <option
           v-for="airport in selectAirports"
           :key="airport.value"
@@ -37,7 +47,7 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 import DataEntryForm from '../components/DataEntryForm.vue';
 
 export default {
-    components: {
+  components: {
     DataEntryForm,
   },
   data() {
@@ -49,12 +59,12 @@ export default {
   methods: {
     ...mapActions(['enterAirportDetails']),
     updateAirportData() {
-        this.enterAirportDetails({
-          UKAirportCode: this.UKAirport,
-          foreignAirportCode: this.foreignAirport,
-        });
-        this.$router.push({ name: 'HomePage' });
-        toastr.success('Airport data submitted');
+      this.enterAirportDetails({
+        UKAirportCode: this.UKAirport,
+        foreignAirportCode: this.foreignAirport,
+      });
+      this.$router.push({ name: 'HomePage' });
+      toastr.success('Airport data submitted');
     },
   },
   computed: {
@@ -77,5 +87,5 @@ export default {
       this.foreignAirport = this.flightplan.foreignAirportCode;
     }
   },
-}
+};
 </script>
