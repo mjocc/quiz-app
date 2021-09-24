@@ -74,12 +74,12 @@ router.beforeEach(async (to, from, next) => {
   }
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.name === 'ProfitInformation' && !store.getters['selected/complete']) {
-    next({ name: 'HomePage' });
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.name === 'ProfitInformation' && !store.getters['selected/complete']) {
+//     next({ name: 'HomePage' });
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
