@@ -1,8 +1,8 @@
 <template>
-  <h1>Airport Details</h1>
+  <h1>Airport details</h1>
   <data-entry-form @submit.prevent="updateAirportData">
     <div class="form-group my-3">
-      <label class="mb-1" for="uk-airport-field">UK Airport</label>
+      <label class="mb-1" for="uk-airport-field">UK airport</label>
       <select
         v-model="UKAirport"
         class="form-select"
@@ -18,7 +18,7 @@
       </select>
     </div>
     <div class="form-group my-3">
-      <label class="mb-1" for="foreign-airport-field">Foreign Airport</label>
+      <label class="mb-1" for="foreign-airport-field">Foreign airport</label>
       <select
         v-model="foreignAirport"
         class="form-select"

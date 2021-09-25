@@ -1,4 +1,5 @@
 <template>
+  <h1>Manage flightplans</h1>
   <table class="table table-hover">
     <thead>
       <tr>

@@ -1,5 +1,5 @@
 <template>
-  <h1>Profit</h1>
+  <h1>Profit information</h1>
   <table class="table">
     <thead>
       <tr>
@@ -78,7 +78,13 @@
       </tr>
     </tbody>
     <tfoot>
-      <tr :class="{ 'table-success': profit > 0, 'table-warning': profit === 0, 'table-danger': profit < 0 }">
+      <tr
+        :class="{
+          'table-success': profit > 0,
+          'table-warning': profit === 0,
+          'table-danger': profit < 0,
+        }"
+      >
         <th class="text-center align-middle">Profit</th>
         <td colspan="2">{{ formatMoney(profit) }}</td>
       </tr>

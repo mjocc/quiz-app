@@ -1,5 +1,5 @@
 <template>
-  <h1>Pricing Details</h1>
+  <h1>Pricing details</h1>
   <data-entry-form @submit.prevent="updatePricingData">
     <div class="form-group my-3">
       <label class="mb-1" for="standard-class-price-field"

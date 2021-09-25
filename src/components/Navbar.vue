@@ -47,7 +47,7 @@
         <navbar-item to="ProfitInformation" :disabled="!complete"
           >Profit information</navbar-item
         >
-        <navbar-item to="ExportPage">Import/export data</navbar-item>
+        <navbar-item to="ExportPage">Export data</navbar-item>
       </ul>
     </div>
   </nav>

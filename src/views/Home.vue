@@ -9,7 +9,7 @@
     <home-link to="ProfitInformation" :disabled="!complete"
       >Profit information</home-link
     >
-    <home-link to="ExportPage">Import/export data</home-link>
+    <home-link to="ExportPage">Export data</home-link>
   </div>
 </template>
 

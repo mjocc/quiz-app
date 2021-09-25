@@ -1,8 +1,8 @@
 <template>
-  <h1>Aircraft Details</h1>
+  <h1>Aircraft details</h1>
   <data-entry-form @submit.prevent="updateAircraftData">
     <div class="form-group my-3">
-      <label class="mb-1" for="aircraft-type-field">Aircraft Type</label>
+      <label class="mb-1" for="aircraft-type-field">Aircraft type</label>
       <select
         v-model="aircraftType"
         class="form-select"
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group my-3">
       <label class="mb-1" for="num-first-class-field"
-        >Number of First Class Seats</label
+        >Number of first class seats</label
       >
       <input
         v-model="numFirstClass"
