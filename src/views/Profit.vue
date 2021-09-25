@@ -78,7 +78,7 @@
       </tr>
     </tbody>
     <tfoot>
-      <tr class="table-{% if profitable %}success{% else %}danger{% endif %}">
+      <tr :class="{ 'table-success': profit > 0, 'table-warning': profit === 0, 'table-danger': profit < 0 }">
         <th class="text-center align-middle">Profit</th>
         <td colspan="2">{{ formatMoney(profit) }}</td>
       </tr>
