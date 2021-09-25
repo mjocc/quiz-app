@@ -90,7 +90,7 @@
                   v-model="createSaveName"
                   :class="{ 'is-invalid': createSaveNameInvalid }"
                   required
-                  @input="createSaveNameInvalid = false;"
+                  @input="createSaveNameInvalid = false"
                 />
               </div>
             </div>
@@ -134,7 +134,7 @@
                   v-model="editSaveName"
                   :class="{ 'is-invalid': editSaveNameInvalid }"
                   required
-                  @input="editSaveNameInvalid = false;"
+                  @input="editSaveNameInvalid = false"
                 />
               </div>
             </div>
@@ -249,8 +249,8 @@ export default {
     async submitCreateForm() {
       let [success, message] = await this.create(this.createSaveName);
       if (success) {
-        $(this.$refs["close-create-modal"]).click();
-        this.removeClickedRow()
+        $(this.$refs['close-create-modal']).click();
+        this.removeClickedRow();
         this.createSaveName = null;
         toastr.success(message);
       } else {
@@ -264,8 +264,8 @@ export default {
         newName: this.editSaveName,
       });
       if (success) {
-        $(this.$refs["close-edit-modal"]).click();
-        this.removeClickedRow()
+        $(this.$refs['close-edit-modal']).click();
+        this.removeClickedRow();
         this.editSaveName = null;
         toastr.success(message);
       } else {
@@ -276,8 +276,8 @@ export default {
     async submitDeleteForm() {
       let [success, message] = await this.delete(this.clickedRow);
       if (success) {
-        $(this.$refs["close-delete-modal"]).click();
-        this.removeClickedRow()
+        $(this.$refs['close-delete-modal']).click();
+        this.removeClickedRow();
         toastr.success(message);
       } else {
         toastr.error(message);

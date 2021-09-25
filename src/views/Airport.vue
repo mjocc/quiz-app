@@ -52,8 +52,8 @@ export default {
   },
   data() {
     return {
-      UKAirport: 'default',
-      foreignAirport: 'default',
+      UKAirport: null,
+      foreignAirport: null,
     };
   },
   methods: {
@@ -65,11 +65,20 @@ export default {
       });
       this.$router.push({ name: 'HomePage' });
       toastr.success('Airport data submitted');
+      if (this.aircraftDetailsExist && !this.inRange) {
+        toastr.warning(
+          'The distance between the selected airports is greater than the range of the selected aircraft'
+        );
+      }
     },
   },
   computed: {
     ...mapState(['airports']),
-    ...mapGetters('selected', ['flightplan']),
+    ...mapGetters('selected', [
+      'flightplan',
+      'aircraftDetailsExist',
+      'inRange',
+    ]),
     selectAirports() {
       return Object.values(this.airports).map((airport) => {
         return {
@@ -80,11 +89,15 @@ export default {
     },
   },
   mounted() {
-    if (this.flightplan.UKAirportCode !== undefined) {
+    if (this.flightplan.UKAirportCode !== null) {
       this.UKAirport = this.flightplan.UKAirportCode;
+    } else {
+      this.UKAirport = 'default';
     }
-    if (this.flightplan.foreignAirportCode !== undefined) {
+    if (this.flightplan.foreignAirportCode !== null) {
       this.foreignAirport = this.flightplan.foreignAirportCode;
+    } else {
+      this.foreignAirport = 'default';
     }
   },
 };

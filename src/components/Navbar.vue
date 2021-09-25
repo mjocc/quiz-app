@@ -31,12 +31,18 @@
       <ul class="navbar-nav mx-2 mx-xl-0">
         <navbar-item to="HomePage">Home</navbar-item>
         <navbar-item to="ManageFlightplans">Manage flightplans</navbar-item>
-        <span class="d-none d-xl-inline border-start border-1 my-2"></span>
+        <span
+          style="border-color: rgba(255, 255, 255, 0.25) !important"
+          class="d-none d-xl-inline border-start border-1 my-2"
+        ></span>
         <hr class="d-xl-none text-white m-0" />
         <navbar-item to="AirportDetails">Airport details</navbar-item>
         <navbar-item to="AircraftDetails">Aircraft details</navbar-item>
         <navbar-item to="PricingDetails">Pricing details</navbar-item>
-        <span class="d-none d-xl-inline border-start border-1 my-2"></span>
+        <span
+          style="border-color: rgba(255, 255, 255, 0.25) !important"
+          class="d-none d-xl-inline border-start border-1 my-2"
+        ></span>
         <hr class="d-xl-none text-white m-0" />
         <navbar-item to="ProfitInformation" :disabled="!complete"
           >Profit information</navbar-item
