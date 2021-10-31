@@ -5,27 +5,30 @@ import toastr from 'toastr';
 
 import store from '@/store/index.js';
 
-import Quizzes from '@/views/Quizzes.vue';
-import Questions from '@/views/Questions.vue';
-import Play from '@/views/Play.vue';
-import Results from '@/views/Results.vue';
+function lazyLoad(view) {
+  return () => import(`../views/${view}.vue`);
+}
 
 const routes = [
   {
     path: '/',
-    name: 'ManageQuizzes',
-    component: Quizzes,
+    redirect: '/play/',
   },
   {
-    path: '/questions/',
+    path: '/manage/quizzes/',
+    name: 'ManageQuizzes',
+    component: lazyLoad('Quizzes'),
+  },
+  {
+    path: '/manage/questions/',
     name: 'ManageQuestions',
-    component: Questions,
+    component: lazyLoad('Questions'),
     props: (route) => ({ quiz: route.query.quiz }),
   },
   {
     path: '/play/',
     name: 'PlayQuizzes',
-    component: Play,
+    component: lazyLoad('Play'),
     props: (route) => ({
       quiz: route.query.quiz,
     }),
@@ -33,7 +36,7 @@ const routes = [
   {
     path: '/results/',
     name: 'DisplayResults',
-    component: Results,
+    component: lazyLoad('Results'),
     props: (route) => ({
       digest: route.query.digest,
       propAnswers: route.query.answers,

@@ -120,21 +120,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#play-background {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  background: rgb(121, 82, 179);
-  background: linear-gradient(
-    135deg,
-    rgba(121, 82, 179, 1) 0%,
-    rgba(71, 23, 143, 1) 65%,
-    rgba(37, 7, 107, 1) 100%
-  );
-}
-</style>

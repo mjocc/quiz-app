@@ -4,12 +4,11 @@
       id="play-container"
       class="d-flex justify-content-center align-items-center"
     >
-      <span
-        id="score-subtitle"
-        class="montserrat bold text-danger"
-        v-if="invalidProps"
-        >Invalid query parameters</span
-      >
+      <div class="alert alert-danger" role="alert" v-if="invalidProps">
+        <span id="score-subtitle" class="montserrat bold"
+          >Invalid query parameters</span
+        >
+      </div>
       <div
         class="spinner-border text-light"
         role="status"
@@ -17,105 +16,111 @@
       >
         <span class="visually-hidden">Loading...</span>
       </div>
-      <span
-        id="score-subtitle"
-        class="montserrat bold text-danger"
-        v-else-if="invalidDigest"
-        >Digest validation failed</span
-      >
-      <div v-else>
-        <div
-          id="quiz-title-container"
-          class="
-            position-absolute
-            top-0
-            start-0
-            container-fluid
-            d-flex
-            justify-content-center
-            align-items-center
-          "
+      <div class="alert alert-danger" role="alert" v-else-if="invalidDigest">
+        <span id="score-subtitle" class="montserrat bold"
+          >Digest validation failed</span
         >
-          <span id="quiz-title" class="montserrat bold text-white">{{
-            quizTitle
-          }}</span>
-        </div>
-        <button
-          id="share-button"
-          class="
-            btn btn-light btn-lg
-            d-flex
-            justify-content-between
-            align-items-center
-          "
-          data-bs-toggle="modal"
-          data-bs-target="#share-modal"
-        >
-          <img src="@/assets/share.svg" width="25" height="25" alt="Share" />
-          <span class="ms-2">Share</span>
-        </button>
-        <button
-          id="play-button"
-          class="
-            btn btn-light btn-lg
-            d-flex
-            justify-content-between
-            align-items-center
-          "
-          @click="playAgain"
-        >
-          <img src="@/assets/play.svg" width="25" height="25" alt="Share" />
-          <span class="ms-2">Play again</span>
-        </button>
-        <div class="half half-left">
+      </div>
+      <transition name="fade" appear v-else>
+        <div>
           <div
-            class="d-flex flex-column justify-content-center align-items-center"
+            id="quiz-title-container"
+            class="
+              position-absolute
+              top-0
+              start-0
+              container-fluid
+              d-flex
+              justify-content-center
+              align-items-center
+            "
           >
-            <span id="score-text" class="montserrat bold text-white">
-              {{ score }}
-            </span>
-            <span id="score-subtitle" class="montserrat bold text-white">
-              out of {{ maxScore }}
-            </span>
-            <span id="score-percentage" class="montserrat bold text-white">
-              {{ scorePercentage }}%
-            </span>
+            <span id="quiz-title" class="montserrat bold text-white">{{
+              quizTitle
+            }}</span>
+          </div>
+          <button
+            id="share-button"
+            class="
+              btn btn-light btn-lg
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+            data-bs-toggle="modal"
+            data-bs-target="#share-modal"
+          >
+            <img src="@/assets/share.svg" width="25" height="25" alt="Share" />
+            <span class="ms-2">Share</span>
+          </button>
+          <button
+            id="play-button"
+            class="
+              btn btn-light btn-lg
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+            @click="playAgain"
+          >
+            <img src="@/assets/play.svg" width="25" height="25" alt="Share" />
+            <span class="ms-2">Play again</span>
+          </button>
+          <div class="half half-left">
+            <div
+              class="
+                d-flex
+                flex-column
+                justify-content-center
+                align-items-center
+              "
+            >
+              <span id="score-text" class="montserrat bold text-white">
+                {{ score }}
+              </span>
+              <span id="score-subtitle" class="montserrat bold text-white">
+                out of {{ maxScore }}
+              </span>
+              <span id="score-percentage" class="montserrat bold text-white">
+                {{ scorePercentage }}%
+              </span>
+            </div>
+          </div>
+          <div class="half half-right">
+            <ol class="text-white list-group flex-grow-1 mx-5">
+              <li
+                class="list-group-item"
+                :class="{
+                  'list-group-item-success': answer.correct,
+                  'list-group-item-danger': !answer.correct,
+                }"
+                v-for="answer in answers"
+                :key="answer.questionNum"
+              >
+                <img
+                  v-if="answer.correct"
+                  src="@/assets/green-tick.svg"
+                  width="30"
+                  height="30"
+                  alt="Correct"
+                />
+                <img
+                  v-else
+                  src="@/assets/red-cross.svg"
+                  width="30"
+                  height="30"
+                  alt="Incorrect"
+                />
+                <span class="fw-bold">{{ answer.questionText }}</span>
+                <br />
+                <span>Your answer: {{ answer.answer }}</span>
+                <br />
+                <span>Correct answer: {{ answer.correctAnswer }}</span>
+              </li>
+            </ol>
           </div>
         </div>
-        <div class="half half-right">
-          <ol class="text-white list-group flex-grow-1 mx-5">
-            <li
-              class="list-group-item"
-              :class="{
-                'list-group-item-success': answer.correct,
-                'list-group-item-danger': !answer.correct,
-              }"
-              v-for="answer in answers"
-              :key="answer.questionNum"
-            >
-              <img
-                v-if="answer.correct"
-                src="@/assets/green-tick.svg"
-                width="30"
-                height="30"
-                alt="Correct"
-              />
-              <img
-                v-else
-                src="@/assets/red-cross.svg"
-                width="30"
-                height="30"
-                alt="Incorrect"
-              />
-              <span class="fw-bold">{{ answer.questionText }}</span>
-              <br />
-              <span>Your answer: {{ answer.answer }}</span>
-              <br />
-              <span>Correct answer: {{ answer.correctAnswer }}</span>
-            </li>
-          </ol>
-        </div>
-      </div>
+      </transition>
     </div>
   </div>
   <teleport to="body">
@@ -248,7 +253,9 @@ export default {
       } else {
         this.invalidDigest = true;
       }
-      this.digestChecked = true;
+      setTimeout(() => {
+        this.digestChecked = true;
+      }, 1000);
     } else {
       this.invalidProps = true;
     }

@@ -1,4 +1,10 @@
 <template>
+  <router-link
+    class="position-absolute bottom-0 end-0 pb-3 pe-3 text-muted fw-light "
+    :to="{ name: 'ManageQuizzes' }"
+    >Manage quizzes</router-link
+  >
+
   <div
     id="play-container"
     class="container d-flex justify-content-center flex-column"
