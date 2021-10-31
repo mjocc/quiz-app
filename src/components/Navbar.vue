@@ -1,87 +1,84 @@
 <template>
-  <nav class="navbar navbar-expand-xl navbar-dark bg-dark px-2">
-    <router-link class="navbar-brand" :to="{ name: 'HomePage' }">
-      <img
-        src="../assets/plane.svg"
-        width="30"
-        height="30"
-        class="d-inline-block align-top mx-1"
-        alt="Plane logo"
-      />
-      Flight Plan Profitability Calculator
-    </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbar-collapsed-section"
-      aria-controls="navbar-collapsed-section"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      v-if="showNavbar"
-      ref="navbarCollapseButton"
+  <div>
+    <div :style="{ height: `${navbarHeight}px` }"></div>
+    <nav
+      id="navbar"
+      class="navbar navbar-expand-xl navbar-dark px-2"
+      ref="navbar"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div
-      class="collapse navbar-collapse"
-      id="navbar-collapsed-section"
-      v-if="showNavbar"
-    >
-      <ul class="navbar-nav mx-2 mx-xl-0">
-        <navbar-item to="HomePage">Home</navbar-item>
-        <navbar-item to="ManageFlightplans">Manage flightplans</navbar-item>
-        <span
-          style="border-color: rgba(255, 255, 255, 0.25) !important"
-          class="d-none d-xl-inline border-start border-1 my-2"
-        ></span>
-        <hr class="d-xl-none text-white m-0" />
-        <navbar-item to="AirportDetails">Airport details</navbar-item>
-        <navbar-item to="AircraftDetails">Aircraft details</navbar-item>
-        <navbar-item to="PricingDetails">Pricing details</navbar-item>
-        <span
-          style="border-color: rgba(255, 255, 255, 0.25) !important"
-          class="d-none d-xl-inline border-start border-1 my-2"
-        ></span>
-        <hr class="d-xl-none text-white m-0" />
-        <navbar-item to="ProfitInformation" :disabled="!complete"
-          >Profit information</navbar-item
-        >
-        <navbar-item to="ExportPage">Export data</navbar-item>
-      </ul>
-    </div>
-  </nav>
+      <div class="container-fluid" ref="navbar-content">
+        <transition name="fade">
+          <router-link
+            class="navbar-brand"
+            :to="{ name: 'ManageQuizzes' }"
+            v-show="!expanded"
+          >
+            <img
+              src="@/assets/question.svg"
+              width="30"
+              height="30"
+              class="d-inline-block align-top ms-1"
+              alt="Plane logo"
+            />
+            Quiz App
+          </router-link>
+        </transition>
+        <transition name="fade">
+          <span v-if="title" v-show="!expanded" class="navbar-text">{{
+            title
+          }}</span>
+        </transition>
+      </div>
+    </nav>
+  </div>
 </template>
 
+<style scoped>
+#navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background: rgb(121, 82, 179);
+  background: linear-gradient(
+    135deg,
+    rgba(121, 82, 179, 1) 0%,
+    rgba(71, 23, 143, 1) 65%,
+    rgba(37, 7, 107, 1) 100%
+  );
+}
+</style>
+
 <script>
-import { mapState, mapGetters } from 'vuex';
-import $ from 'jquery';
-
-import NavbarItem from './NavbarItem.vue';
-
 export default {
-  name: 'navbar',
-  components: {
-    NavbarItem,
+  name: 'Navbar',
+  data() {
+    return {
+      navbarHeight: 56,
+    };
   },
-  computed: {
-    ...mapState('selected', ['flightPlanName']),
-    ...mapGetters('selected', ['complete']),
-    dataEntryDropdownActive() {
-      return ['AirportDetails', 'AircraftDetails', 'PricingDetails'].includes(
-        this.$route.name
-      );
-    },
-    showNavbar() {
-      return !(
-        this.flightPlanName === null && this.$route.name === 'ManageFlightplans'
-      );
-    },
+  props: {
+    expanded: Boolean,
+    title: String,
   },
+  emits: ['transitionFinished'],
   watch: {
-    $route: function () {
-      if ($(this.$refs.navbarCollapseButton).attr('aria-expanded') === 'true') {
-        $(this.$refs.navbarCollapseButton).click();
+    expanded() {
+      this.triggerAnimation();
+    },
+  },
+  methods: {
+    triggerAnimation() {
+      this.$refs.navbar.style['z-index'] = '5';
+      this.$refs['navbar-content'].style['z-index'] = '10';
+      let windowHeight = window.innerHeight;
+      for (let i = this.navbarHeight; i <= windowHeight; i += 0.25) {
+        setTimeout(() => {
+          this.$refs.navbar.style.height = `${i}px`;
+          if (i === windowHeight) {
+            this.$emit('transitionFinished');
+          }
+        }, i * 1.25);
       }
     },
   },

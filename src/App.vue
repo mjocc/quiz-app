@@ -1,23 +1,23 @@
 <template>
-  <navbar />
-  <div class="container mt-4">
+  <div :class="{ container: !removePadding, 'mt-4': !removePadding }">
     <router-view />
   </div>
 </template>
 
 <script>
+import _ from 'lodash';
 import toastr from 'toastr';
-
-import Navbar from './components/Navbar.vue';
 
 toastr.options = {
   positionClass: 'toast-bottom-right',
 };
 
 export default {
-  name: 'App',
-  components: {
-    Navbar,
+  name: 'QuizApp',
+  computed: {
+    removePadding() {
+      return _.includes(['PlayQuizzes', 'DisplayResults'], this.$route.name);
+    },
   },
 };
 </script>

@@ -1,4 +1,4 @@
-# gcse-programming-project-vue
+# quiz-app
 
 ## Project setup
 

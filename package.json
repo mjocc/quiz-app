@@ -1,5 +1,5 @@
 {
-  "name": "gcse-programming-project-vue",
+  "name": "quiz-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,8 @@
     "@popperjs/core": "^2.10.1",
     "bootstrap": "^5.1.0",
     "core-js": "^3.6.5",
+    "create-hmac": "^1.1.7",
+    "dateformat": "^5.0.2",
     "downloadjs": "^1.4.7",
     "jquery": "^3.6.0",
     "json-to-pretty-yaml": "^1.2.2",
@@ -38,8 +40,10 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
+    "node-sass": "^6.0.1",
     "prettier": "^2.2.1",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "sass-loader": "^12.2.0"
   },
   "eslintConfig": {
     "root": true,

@@ -5,6 +5,7 @@ import 'jquery';
 import 'bootstrap';
 import 'toastr';
 
+import '@/assets/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'toastr/build/toastr.min.css';
 

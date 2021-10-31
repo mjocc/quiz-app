@@ -1,21 +1,18 @@
-function getSelectedFlightPlan(state) {
-  return state.flightplans[state.selected.flightPlanName];
-}
-
 export default {
-  enterAirportDetails(state, payload) {
-    const flightplan = getSelectedFlightPlan(state);
-    flightplan.UKAirportCode = payload.UKAirportCode;
-    flightplan.foreignAirportCode = payload.foreignAirportCode;
+  createQuiz(state, name) {
+    state.quizzes[name] = {
+      name: name,
+      created: new Date(),
+      questions: {},
+    };
   },
-  enterAircraftDetails(state, payload) {
-    const flightplan = getSelectedFlightPlan(state);
-    flightplan.aircraftID = parseInt(payload.aircraftID);
-    flightplan.numFirstClass = parseInt(payload.numFirstClass);
+  updateQuiz(state, names) {
+    let quiz = state.quizzes[names.oldName];
+    quiz.name = names.newName;
+    state.quizzes[names.newName] = quiz;
+    delete state.quizzes[names.oldName];
   },
-  enterPricingDetails(state, payload) {
-    const flightplan = getSelectedFlightPlan(state);
-    flightplan.standardClassPrice = parseFloat(payload.standardClassPrice);
-    flightplan.firstClassPrice = parseFloat(payload.firstClassPrice);
+  deleteQuiz(state, name) {
+    delete state.quizzes[name];
   },
 };
